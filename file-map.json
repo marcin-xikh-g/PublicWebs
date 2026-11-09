@@ -8,6 +8,12 @@
       "encryptedPath": "out-files/boss-territorial-expansion.md.caesar",
       "sha256": "6758a822204607d8742c4b9bd15e5372fb687aace4f4e5140c8b3c00276f9071",
       "encryptedSha256": "24334c022b740f5da5a078cde1dcc1b6633dd85924a14a41b1704337dd56e965"
+    },
+    {
+      "sourcePath": "in-files/misc/media/yt/nice-channels-to-follow.md",
+      "encryptedPath": "out-files/misc/media/yt/nice-channels-to-follow.md.caesar",
+      "sha256": "60d445b8cf4fe367fc8ed65850bedc44f4874262bee22b45d4797cbaf05986b9",
+      "encryptedSha256": "014486ebb33c1cc7ec3532f64614462e7cd7b8cd9b34578b8aaa1130c3e7ad23"
     }
   ]
 }
