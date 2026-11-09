@@ -11,6 +11,8 @@ const lockedMessage = document.querySelector('#locked-message');
 const submitButton = form.querySelector('button');
 const fileMenu = document.querySelector('#file-menu');
 const pageTitle = document.querySelector('#page-title');
+const explorerTrigger = document.querySelector('#explorer-trigger');
+const fileDialog = document.querySelector('#file-dialog');
 let documents = [];
 let selectedDocument = null;
 
@@ -25,6 +27,7 @@ function displayName(document) {
 function selectDocument(document) {
   selectedDocument = document;
   pageTitle.textContent = displayName(document);
+  explorerTrigger.textContent = `Plik: ${displayName(document)}`;
 
   for (const button of fileMenu.querySelectorAll('button')) {
     button.classList.toggle('is-selected', button.dataset.sourcePath === document.sourcePath);
@@ -42,6 +45,7 @@ function renderFileMenu() {
     button.textContent = displayName(file);
     button.addEventListener('click', () => {
       selectDocument(file);
+      fileDialog.close();
       if (!content.hidden && keyInput.value === ACCESS_KEY) unlockDocument();
     });
     fileMenu.append(button);
@@ -106,5 +110,7 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   unlockDocument();
 });
+
+explorerTrigger.addEventListener('click', () => fileDialog.showModal());
 
 loadDocumentList();

@@ -28,19 +28,23 @@
         </form>
 
         <div class="content-grid">
-          <aside class="file-explorer" aria-labelledby="explorer-title">
-            <p id="explorer-title" class="explorer-label">PLIKI W REPOZYTORIUM</p>
-            <nav id="file-menu" class="file-menu" aria-label="Dokumenty do otwarcia">
-              <p class="file-menu-status">Wczytywanie listy plików…</p>
-            </nav>
-          </aside>
-
           <div class="document-frame" aria-label="Odszyfrowana zawartość dokumentu">
+            <button id="explorer-trigger" class="explorer-trigger" type="button">Przeglądaj pliki</button>
             <article id="document-content" class="markdown-body" hidden></article>
             <p id="locked-message" class="locked-message">Wybierz plik i podaj klucz, aby zobaczyć zawartość.</p>
           </div>
         </div>
       </section>
     </main>
+
+    <dialog id="file-dialog" class="file-dialog" aria-labelledby="explorer-title">
+      <header class="dialog-header">
+        <p id="explorer-title" class="explorer-label">PLIKI W REPOZYTORIUM</p>
+        <form method="dialog"><button class="dialog-close" type="submit" aria-label="Zamknij okno">×</button></form>
+      </header>
+      <nav id="file-menu" class="file-menu" aria-label="Dokumenty do otwarcia">
+        <p class="file-menu-status">Wczytywanie listy plików…</p>
+      </nav>
+    </dialog>
   </body>
 </html>
