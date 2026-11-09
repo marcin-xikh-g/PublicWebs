@@ -14,8 +14,8 @@
       <section class="document-card" aria-labelledby="page-title">
         <header class="card-header">
           <p class="eyebrow">ENCRYPTED ARCHIVE</p>
-          <h1 id="page-title">Boss Territorial Expansion</h1>
-          <p class="lead">Podaj klucz dekodowania, aby wyświetlić dokument Markdown.</p>
+          <h1 id="page-title">Encrypted documents</h1>
+          <p class="lead">Wybierz dokument z repozytorium, a następnie podaj klucz dekodowania.</p>
         </header>
 
         <form id="decode-form" class="decode-form">
@@ -27,9 +27,18 @@
           <p id="status" class="status" aria-live="polite">Dokument pozostaje zaszyfrowany.</p>
         </form>
 
-        <div class="document-frame" aria-label="Odszyfrowana zawartość dokumentu">
-          <article id="document-content" class="markdown-body" hidden></article>
-          <p id="locked-message" class="locked-message">Zawartość pojawi się tutaj po poprawnym odszyfrowaniu.</p>
+        <div class="content-grid">
+          <aside class="file-explorer" aria-labelledby="explorer-title">
+            <p id="explorer-title" class="explorer-label">PLIKI W REPOZYTORIUM</p>
+            <nav id="file-menu" class="file-menu" aria-label="Dokumenty do otwarcia">
+              <p class="file-menu-status">Wczytywanie listy plików…</p>
+            </nav>
+          </aside>
+
+          <div class="document-frame" aria-label="Odszyfrowana zawartość dokumentu">
+            <article id="document-content" class="markdown-body" hidden></article>
+            <p id="locked-message" class="locked-message">Wybierz plik i podaj klucz, aby zobaczyć zawartość.</p>
+          </div>
         </div>
       </section>
     </main>

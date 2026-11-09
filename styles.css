@@ -43,7 +43,14 @@ button:hover { background: #cee99a; }
 button:disabled { cursor: wait; opacity: .7; }
 .status { min-height: 1.25rem; margin: .8rem 0 0; color: #c6c9bc; font-size: .9rem; }
 
-.document-frame { min-height: 26rem; padding: clamp(1.5rem, 4vw, 3rem); background: #f4f1e7; color: #232820; }
+.content-grid { display: grid; grid-template-columns: minmax(12rem, 22%) 1fr; min-height: 26rem; }
+.file-explorer { padding: 1.5rem 1rem; border-right: 1px solid #46503b; background: #121610; }
+.explorer-label { margin: 0 0 1rem; color: #b9d983; font-size: .7rem; font-weight: 800; letter-spacing: .12em; }
+.file-menu { display: grid; gap: .35rem; }
+.file-menu-status { margin: 0; color: #aeb5a5; font-size: .9rem; }
+.file-menu-item { width: 100%; min-height: 0; padding: .65rem .75rem; border: 1px solid transparent; border-radius: 6px; background: transparent; color: #dfe4d7; text-align: left; font-size: .85rem; font-weight: 600; overflow-wrap: anywhere; }
+.file-menu-item:hover, .file-menu-item.is-selected { border-color: #75865a; background: #293321; color: #eff6e4; }
+.document-frame { min-width: 0; padding: clamp(1.5rem, 4vw, 3rem); background: #f4f1e7; color: #232820; }
 .locked-message { margin: 7rem auto; color: #687063; text-align: center; }
 .markdown-body { font-family: Georgia, "Times New Roman", serif; font-size: 1.08rem; line-height: 1.7; }
 .markdown-body > :first-child { margin-top: 0; }
@@ -59,4 +66,6 @@ button:disabled { cursor: wait; opacity: .7; }
 @media (max-width: 540px) {
   .input-row { flex-direction: column; }
   button { width: 100%; }
+  .content-grid { grid-template-columns: 1fr; }
+  .file-explorer { border-right: 0; border-bottom: 1px solid #46503b; }
 }
