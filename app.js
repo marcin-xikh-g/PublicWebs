@@ -1,4 +1,5 @@
 const CAESAR_SHIFT = 23;
+const ACCESS_KEY = 'fatagruzja';
 const ENCRYPTED_DOCUMENT = 'out-files/boss-territorial-expansion.md.caesar';
 
 const form = document.querySelector('#decode-form');
@@ -13,7 +14,7 @@ function decryptBytes(encryptedBytes) {
 }
 
 async function unlockDocument() {
-  if (keyInput.value !== String(CAESAR_SHIFT)) {
+  if (keyInput.value !== ACCESS_KEY) {
     status.textContent = 'Nieprawidłowy klucz. Spróbuj ponownie.';
     keyInput.focus();
     return;
