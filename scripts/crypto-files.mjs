@@ -9,6 +9,11 @@ const INPUT_DIRECTORY = path.join(ROOT, 'in-files');
 const OUTPUT_DIRECTORY = path.join(ROOT, 'out-files');
 const DECRYPTED_DIRECTORY = path.join(ROOT, 'de-files');
 const MAP_PATH = path.join(ROOT, 'file-map.json');
+const HINT_KEY = 'fatagruzja';
+const MARKDOWN_HINT = Buffer.from(
+  '\n\n---\n\n## fatagruzja\n\nGdy główna treść w chaos się snuje,\ndwadzieścia i trzy ją rozkuje.\n',
+  'utf8'
+);
 
 function sha256(contents) {
   return createHash('sha256').update(contents).digest('hex');
@@ -16,6 +21,12 @@ function sha256(contents) {
 
 function projectPath(filePath) {
   return path.relative(ROOT, filePath).split(path.sep).join('/');
+}
+
+function shiftFromKey(key) {
+  const keyBytes = Buffer.from(key, 'utf8');
+  const derivedShift = keyBytes.reduce((total, byte) => (total + byte) % 256, 0);
+  return derivedShift === CAESAR_SHIFT ? (derivedShift + 1) % 256 : derivedShift;
 }
 
 async function filesIn(directory, relativeDirectory = '') {
@@ -45,7 +56,12 @@ async function encrypt() {
     const encryptedRelativePath = `${relativePath}.caesar`;
     const encryptedPath = path.join(OUTPUT_DIRECTORY, encryptedRelativePath);
     const source = await readFile(sourcePath);
-    const encrypted = shiftBytes(source, CAESAR_SHIFT);
+    const hint = path.extname(relativePath).toLowerCase() === '.md' ? MARKDOWN_HINT : Buffer.alloc(0);
+    const hintShift = hint.length > 0 ? shiftFromKey(HINT_KEY) : null;
+    const encrypted = Buffer.concat([
+      shiftBytes(source, CAESAR_SHIFT),
+      hint.length > 0 ? shiftBytes(hint, hintShift) : Buffer.alloc(0)
+    ]);
 
     await mkdir(path.dirname(encryptedPath), { recursive: true });
     await writeFile(encryptedPath, encrypted);
@@ -53,7 +69,10 @@ async function encrypt() {
       sourcePath: projectPath(sourcePath),
       encryptedPath: projectPath(encryptedPath),
       sha256: sha256(source),
-      encryptedSha256: sha256(encrypted)
+      encryptedSha256: sha256(encrypted),
+      sourceByteLength: source.length,
+      hintByteLength: hint.length,
+      hintShift
     });
   }
 
@@ -84,10 +103,16 @@ async function decrypt() {
       throw new Error(`Encrypted checksum mismatch: ${item.encryptedPath}`);
     }
 
+    const sourceByteLength = item.sourceByteLength ?? encrypted.length;
+    const source = shiftBytes(encrypted.subarray(0, sourceByteLength), -CAESAR_SHIFT);
+    if (sha256(source) !== item.sha256) {
+      throw new Error(`Source checksum mismatch: ${item.sourcePath}`);
+    }
+
     const relativePath = item.sourcePath.slice('in-files/'.length);
     const decryptedPath = path.join(DECRYPTED_DIRECTORY, relativePath);
     await mkdir(path.dirname(decryptedPath), { recursive: true });
-    await writeFile(decryptedPath, shiftBytes(encrypted, -CAESAR_SHIFT));
+    await writeFile(decryptedPath, source);
   }
 
   console.log(`Decrypted ${map.files.length} file(s) into de-files/.`);
