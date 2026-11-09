@@ -16,8 +16,17 @@ const fileDialog = document.querySelector('#file-dialog');
 let documents = [];
 let selectedDocument = null;
 
-function decryptBytes(encryptedBytes) {
-  return Uint8Array.from(encryptedBytes, (byte) => (byte - CAESAR_SHIFT + 256) % 256);
+function shiftFromKey(key) {
+  if (key === ACCESS_KEY) return CAESAR_SHIFT;
+
+  const keyBytes = new TextEncoder().encode(key);
+  const derivedShift = keyBytes.reduce((total, byte) => (total + byte) % 256, 0);
+  return derivedShift === CAESAR_SHIFT ? (derivedShift + 1) % 256 : derivedShift;
+}
+
+function decryptBytes(encryptedBytes, key) {
+  const shift = shiftFromKey(key);
+  return Uint8Array.from(encryptedBytes, (byte) => (byte - shift + 256) % 256);
 }
 
 function displayName(document) {
@@ -46,7 +55,7 @@ function renderFileMenu() {
     button.addEventListener('click', () => {
       selectDocument(file);
       fileDialog.close();
-      if (!content.hidden && keyInput.value === ACCESS_KEY) unlockDocument();
+      if (!content.hidden && keyInput.value) unlockDocument();
     });
     fileMenu.append(button);
   }
@@ -73,8 +82,8 @@ async function loadDocumentList() {
 }
 
 async function unlockDocument() {
-  if (keyInput.value !== ACCESS_KEY) {
-    status.textContent = 'Nieprawidłowy klucz. Spróbuj ponownie.';
+  if (!keyInput.value) {
+    status.textContent = 'Wpisz klucz dekodowania.';
     keyInput.focus();
     return;
   }
@@ -91,13 +100,13 @@ async function unlockDocument() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
     const encryptedBytes = new Uint8Array(await response.arrayBuffer());
-    const markdown = new TextDecoder('utf-8', { fatal: true }).decode(decryptBytes(encryptedBytes));
+    const markdown = new TextDecoder('utf-8').decode(decryptBytes(encryptedBytes, keyInput.value));
 
     content.innerHTML = window.marked.parse(markdown, { gfm: true, breaks: false });
     content.hidden = false;
     lockedMessage.hidden = true;
     localStorage.setItem(LAST_OPENED_DOCUMENT_KEY, selectedDocument.sourcePath);
-    status.textContent = 'Dokument został odszyfrowany.';
+    status.textContent = 'Dokument został odszyfrowany podanym kluczem.';
   } catch (error) {
     console.error(error);
     status.textContent = 'Nie udało się odczytać zaszyfrowanego dokumentu.';
