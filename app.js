@@ -3,14 +3,11 @@ const ACCESS_KEY = '23';
 const FILE_MAP_URL = 'file-map.json';
 const LAST_OPENED_DOCUMENT_KEY = 'publicwebs:last-opened-document';
 
-const form = document.querySelector('#decode-form');
 const keyInput = document.querySelector('#decode-key');
 const status = document.querySelector('#status');
 const content = document.querySelector('#document-content');
 const lockedMessage = document.querySelector('#locked-message');
-const submitButton = form.querySelector('button');
 const fileMenu = document.querySelector('#file-menu');
-const pageTitle = document.querySelector('#page-title');
 const explorerTrigger = document.querySelector('#explorer-trigger');
 const fileDialog = document.querySelector('#file-dialog');
 let documents = [];
@@ -35,8 +32,6 @@ function displayName(document) {
 
 function selectDocument(document) {
   selectedDocument = document;
-  pageTitle.textContent = displayName(document);
-  explorerTrigger.textContent = `Plik: ${displayName(document)}`;
 
   for (const button of fileMenu.querySelectorAll('button')) {
     button.classList.toggle('is-selected', button.dataset.sourcePath === document.sourcePath);
@@ -92,7 +87,6 @@ async function unlockDocument() {
     return;
   }
 
-  submitButton.disabled = true;
   status.textContent = 'Odszyfrowywanie dokumentu…';
 
   try {
@@ -110,14 +104,18 @@ async function unlockDocument() {
   } catch (error) {
     console.error(error);
     status.textContent = 'Nie udało się odczytać zaszyfrowanego dokumentu.';
-  } finally {
-    submitButton.disabled = false;
   }
 }
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  unlockDocument();
+keyInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    unlockDocument();
+  }
+});
+
+keyInput.addEventListener('blur', () => {
+  if (keyInput.value) unlockDocument();
 });
 
 explorerTrigger.addEventListener('click', () => fileDialog.showModal());

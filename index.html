@@ -11,21 +11,25 @@
   </head>
   <body>
     <main class="page-shell">
-      <section class="document-card" aria-labelledby="page-title">
-        <header class="card-header">
-          <p class="eyebrow">ENCRYPTED ARCHIVE</p>
-          <h1 id="page-title">Encrypted documents</h1>
-          <p class="lead">Wybierz dokument z repozytorium, a następnie podaj klucz dekodowania.</p>
-        </header>
-
-        <form id="decode-form" class="decode-form">
-          <label for="decode-key">Klucz dekodowania</label>
-          <div class="input-row">
-            <input id="decode-key" name="decode-key" type="password" autocomplete="off" placeholder="Wpisz klucz" required />
-            <button type="submit">Odszyfruj</button>
-          </div>
+      <section class="document-card" aria-label="Przeglądarka zaszyfrowanych dokumentów">
+        <header class="control-bar">
+          <input id="decode-key" name="decode-key" type="text" autocomplete="off" placeholder="Klucz dekodowania" aria-label="Klucz dekodowania" />
+          <input id="reserved-input" name="reserved-input" type="text" autocomplete="off" placeholder="Pole dodatkowe" aria-label="Pole dodatkowe" />
+          <select id="reserved-number" name="reserved-number" aria-label="Liczba do późniejszego użycia">
+            <option value="" selected disabled>Wybierz liczbę</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
           <p id="status" class="status" aria-live="polite">Dokument pozostaje zaszyfrowany.</p>
-        </form>
+        </header>
 
         <div class="content-grid">
           <div class="document-frame" aria-label="Odszyfrowana zawartość dokumentu">
