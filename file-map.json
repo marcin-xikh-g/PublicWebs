@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "algorithm": "Caesar byte shift modulo 256",
+  "shift": 23,
+  "files": [
+    {
+      "sourcePath": "in-files/boss-territorial-expansion.md",
+      "encryptedPath": "out-files/boss-territorial-expansion.md.caesar",
+      "sha256": "6758a822204607d8742c4b9bd15e5372fb687aace4f4e5140c8b3c00276f9071",
+      "encryptedSha256": "24334c022b740f5da5a078cde1dcc1b6633dd85924a14a41b1704337dd56e965"
+    }
+  ]
+}

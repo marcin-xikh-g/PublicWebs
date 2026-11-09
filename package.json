@@ -1,0 +1,15 @@
+{
+  "name": "public-webs",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "encrypt:files": "node scripts/crypto-files.mjs encrypt",
+    "decrypt:files": "node scripts/crypto-files.mjs decrypt",
+    "check:file-map": "node scripts/check-file-map.mjs",
+    "setup": "node scripts/setup-hooks.mjs",
+    "test": "node scripts/test-caesar.mjs"
+  }
+}

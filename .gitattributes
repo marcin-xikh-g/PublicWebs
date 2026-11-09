@@ -1,0 +1,2 @@
+# Hooks need Unix line endings so Git can execute their shebang on every platform.
+.githooks/** text eol=lf

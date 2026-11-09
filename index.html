@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Odszyfruj i przeczytaj dokument Markdown." />
+    <title>Encrypted document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script defer type="module" src="app.js"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="document-card" aria-labelledby="page-title">
+        <header class="card-header">
+          <p class="eyebrow">ENCRYPTED ARCHIVE · CAESAR-23</p>
+          <h1 id="page-title">Boss Territorial Expansion</h1>
+          <p class="lead">Podaj klucz dekodowania, aby wyświetlić dokument Markdown.</p>
+        </header>
+
+        <form id="decode-form" class="decode-form">
+          <label for="decode-key">Klucz dekodowania</label>
+          <div class="input-row">
+            <input id="decode-key" name="decode-key" type="password" inputmode="numeric" autocomplete="off" placeholder="np. 23" required />
+            <button type="submit">Odszyfruj</button>
+          </div>
+          <p id="status" class="status" aria-live="polite">Dokument pozostaje zaszyfrowany.</p>
+        </form>
+
+        <div class="document-frame" aria-label="Odszyfrowana zawartość dokumentu">
+          <article id="document-content" class="markdown-body" hidden></article>
+          <p id="locked-message" class="locked-message">Zawartość pojawi się tutaj po poprawnym odszyfrowaniu.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
