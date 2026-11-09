@@ -1,5 +1,5 @@
 const CAESAR_SHIFT = 23;
-const ACCESS_KEY = 'fatagruzja';
+const ACCESS_KEY = '23';
 const FILE_MAP_URL = 'file-map.json';
 const LAST_OPENED_DOCUMENT_KEY = 'publicwebs:last-opened-document';
 
