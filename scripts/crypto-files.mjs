@@ -11,7 +11,7 @@ const DECRYPTED_DIRECTORY = path.join(ROOT, 'de-files');
 const MAP_PATH = path.join(ROOT, 'file-map.json');
 const HINT_KEY = 'fatagruzja';
 const MARKDOWN_HINT = Buffer.from(
-  '\n\n---\n\n## fatagruzja\n\nTam, gdzie wiatr po czerwonym parkiecie hula,\nskrzydlaty byk strzeże znaku bez tytułu.\nNie pytaj cyfr — legenda wie, co znaczy,\na brama się otwiera, gdy cień ją zobaczy.\n',
+  '\n\n---\n\n## fatagruzja\n\nGdy w Soplicowie wskazówka domknie swój krąg,\nwyrusz w tę samą drogę, lecz raz zgub ostatni krok.\nPod litewskim niebem nie pytaj o cyfry —\nznak pojawi się, gdy rachunek skończy mrok.\n',
   'utf8'
 );
 

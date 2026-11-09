@@ -7,18 +7,18 @@
       "sourcePath": "in-files/boss-territorial-expansion.md",
       "encryptedPath": "out-files/boss-territorial-expansion.md.caesar",
       "sha256": "6758a822204607d8742c4b9bd15e5372fb687aace4f4e5140c8b3c00276f9071",
-      "encryptedSha256": "37f4efd2b44554b3509fd9be05bad94fe9a61c7ad3e7667ff73cf3b12c26060b",
+      "encryptedSha256": "c25eb7a191cbbc20982ac01f9f2c666618eecbafa3d7b9fd07bf5395da5a103d",
       "sourceByteLength": 22965,
-      "hintByteLength": 199,
+      "hintByteLength": 215,
       "hintShift": 47
     },
     {
       "sourcePath": "in-files/misc/media/yt/nice-channels-to-follow.md",
       "encryptedPath": "out-files/misc/media/yt/nice-channels-to-follow.md.caesar",
       "sha256": "60d445b8cf4fe367fc8ed65850bedc44f4874262bee22b45d4797cbaf05986b9",
-      "encryptedSha256": "48e235ddfae0d48f2afbf427a67bc21983cd4fa9d8ad0442617c15ef63b61cf0",
+      "encryptedSha256": "36bf1531507a9c3eddf839a583070b96ecf7548b6d1a93822c390f98ebd46d26",
       "sourceByteLength": 173,
-      "hintByteLength": 199,
+      "hintByteLength": 215,
       "hintShift": 47
     }
   ]
