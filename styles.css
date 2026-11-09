@@ -62,7 +62,6 @@ button:hover { background: #cee99a; }
 
 @media (max-width: 540px) {
   .page-shell { width: calc(100% - 2rem); padding: 1rem 0; }
-  .control-bar { grid-template-columns: 1fr; }
   button { width: 100%; }
   .explorer-trigger, .dialog-close { width: auto; }
 }
