@@ -15,9 +15,18 @@
     {
       "sourcePath": "in-files/misc/media/yt/nice-channels-to-follow.md",
       "encryptedPath": "out-files/misc/media/yt/nice-channels-to-follow.md.caesar",
-      "sha256": "60d445b8cf4fe367fc8ed65850bedc44f4874262bee22b45d4797cbaf05986b9",
-      "encryptedSha256": "36bf1531507a9c3eddf839a583070b96ecf7548b6d1a93822c390f98ebd46d26",
-      "sourceByteLength": 173,
+      "sha256": "9626ff9f12e1927516a021659340d3b7d0ce4ca2231ef8000afcc2704d6f0370",
+      "encryptedSha256": "dbefdbff698d16bfbec60f7ba4e374619eaf02f972e198e926ad6f70974ed5b6",
+      "sourceByteLength": 1127,
+      "hintByteLength": 215,
+      "hintShift": 47
+    },
+    {
+      "sourcePath": "in-files/misc/media/yt/nice-instanas-to-follow.md",
+      "encryptedPath": "out-files/misc/media/yt/nice-instanas-to-follow.md.caesar",
+      "sha256": "31c12fc68e1d398d0b9b2672c79ac7a6444a399cb5fb05f31f410fb3fdf631ce",
+      "encryptedSha256": "60ef52966a302d6d8ca60167634a89d50ecb3da47f0b83d3692f9362bf0b19e0",
+      "sourceByteLength": 107,
       "hintByteLength": 215,
       "hintShift": 47
     }
